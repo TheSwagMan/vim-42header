@@ -6,7 +6,7 @@
 "  Nobody <no@add.ress>                          `,X          `.               "
 "                                                /` `           `._            "
 "  C: 2017/08/04 by Nobody                      (            ,   ,_\           "
-"  M: 2017/08/04 by Nobody                      |          ,---.,'o `.         "
+"                                               |          ,---.,'o `.         "
 "                                                                              "
 "                                                \ ,.    (      .____,         "
 "                                                   \|     ____,'     \        "
@@ -160,7 +160,7 @@ endfunction
 
 function! s:update()
 	call s:filetype()
-	if getline(9) =~ s:start . repeat(' ', s:margin - strlen(s:start)) . "M: "
+	if getline(s:height - 2) =~ s:start . repeat(' ', s:margin - strlen(s:start)) . "M: "
 		if &mod
 			call setline(9, s:line(9))
 		endif
