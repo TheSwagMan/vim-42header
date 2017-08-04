@@ -17,8 +17,8 @@
 "                                                   __|            ,-'_        "
 "                                                 / `L     `._  _,'  ' `.      "
 "                                                /    `--.._  `',.   _\  `     "
-"  C: 2017/08/04 23:41 by Thomas POTIER          `-.       /\  | `. ( ,\  \    "
-"  M: 2017/08/04 23:41 by Thomas POTIER         _/  `-._  /  \ |--'  (     \   "
+"  C: 2017/08/04 23:53 by Thomas POTIER          `-.       /\  | `. ( ,\  \    "
+"  M: 2017/08/04 23:53 by Thomas POTIER         _/  `-._  /  \ |--'  (     \   "
 "                                              '  `-.   `'    \/\`.   `.    )  "
 "  CustomHeader ! v1.0                               \  -hrr-    \ `.  |    |  "
 " **************************************************************************** "
@@ -42,8 +42,8 @@
 "                                                   __|            ,-'_        "
 "                                                 / `L     `._  _,'  ' `.      "
 "                                                /    `--.._  `',.   _\  `     "
-"  C: 2017/08/04 23:29 by Thomas POTIER          `-.       /\  | `. ( ,\  \    "
-"  M: 2017/08/04 23:29 by Thomas POTIER         _/  `-._  /  \ |--'  (     \   "
+"  C: 2017/08/04 23:52 by Thomas POTIER          `-.       /\  | `. ( ,\  \    "
+"  M: 2017/08/04 23:52 by Thomas POTIER         _/  `-._  /  \ |--'  (     \   "
 "                                              '  `-.   `'    \/\`.   `.    )  "
 "  CustomHeader ! v1.0                               \  -hrr-    \ `.  |    |  "
 " **************************************************************************** "
@@ -80,6 +80,11 @@ let s:fill		= '*'
 let s:length	= 80
 let s:margin	= 3
 let s:height	= len(s:asciiart) + 2
+let s:fileline	= 3
+let s:nameline	= 5
+let s:crtline	= s:height - 4
+let s:modline	= s:height - 3
+let s:credline	= s:height - 1
 
 let s:types		= {
 			\'\.c$\|\.h$\|\.cc$\|\.hh$\|\.cpp$\|\.hpp$\|\.php':
@@ -135,15 +140,15 @@ endfunction
 function! s:line(n)
 	if a:n == 1 || a:n == s:height
 		return s:start . ' ' . repeat(s:fill, s:length - strlen(s:start) - strlen(s:end) - 2) . ' ' . s:end
-	elseif a:n == 3
+	elseif a:n == s:fileline
 		return s:textline(s:filename(), s:ascii(a:n))
-	elseif a:n == 5
+	elseif a:n == s:nameline
 		return s:textline(s:name() . " <" . s:mail() . ">", s:ascii(a:n))
-	elseif a:n == s:height - 4
+	elseif a:n == s:crtline
 		return s:textline("C: " . s:date() . " by " . s:name(), s:ascii(a:n))
-	elseif a:n == s:height - 3
+	elseif a:n == s:modline
 		return s:textline("M: " . s:date() . " by " . s:name(), s:ascii(a:n))
-	elseif a:n == s:height - 1
+	elseif a:n == s:credline
 		return s:textline(s:plugname, s:ascii(a:n))
 	else
 		return s:textline('', s:ascii(a:n))
@@ -191,9 +196,9 @@ function! s:update()
 	call s:filetype()
 	if getline(s:height - 2) =~ s:start . repeat(' ', s:margin - strlen(s:start)) . "M: "
 		if &mod
-			call setline(s:height - 2, s:line(s:height - 2))
+			call setline(s:modline, s:line(s:modline))
 		endif
-		call setline(4, s:line(4))
+		call setline(s:fileline, s:line(s:fileline))
 		return 0
 	endif
 	if s:checkfiletype()
