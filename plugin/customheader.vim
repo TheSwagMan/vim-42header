@@ -16,8 +16,8 @@
 "                                                    |   |         .O |        "
 "                                                   __|            ,-'_        "
 "                                                 / `L     `._  _,'  ' `.      "
-"  C: 2017/08/04 22:51 by Nobody                 /    `--.._  `',.   _\  `     "
-"  M: 2017/08/04 22:53 by Nobody                 `-.       /\  | `. ( ,\  \    "
+"  C: 2017/08/04 23:01 by Nobody                 /    `--.._  `',.   _\  `     "
+"  M: 2017/08/04 23:01 by Nobody                 `-.       /\  | `. ( ,\  \    "
 "                                                                              "
 " **************************************************************************** "
 
@@ -105,8 +105,6 @@ endfunction
 function! s:line(n)
 	if a:n == 1 || a:n == s:height " top and bottom line
 		return s:start . ' ' . repeat(s:fill, s:length - strlen(s:start) - strlen(s:end) - 2) . ' ' . s:end
-	elseif a:n == s:height - 1 " blank line
-		return s:textline('', '')
 	elseif a:n == 4 " filename
 		return s:textline(s:filename(), s:ascii(a:n))
 	elseif a:n == 6 " author
@@ -168,15 +166,15 @@ function! s:update()
 	endif
 	if s:checkfiletype()
 		return 1
-	return 0
-endfunction
+		return 0
+	endfunction
 
-function! s:customheader()
-	if s:update()
-		call s:insert()
-	endif
-endfunction
+	function! s:customheader()
+		if s:update()
+			call s:insert()
+		endif
+	endfunction
 
-command! CustomHeader call s:customheader ()
-nmap <f1> <esc>:CustomHeader<CR>
-autocmd BufWritePre	*	call s:customheader ()
+	command! CustomHeader call s:customheader ()
+	nmap <f1> <esc>:CustomHeader<CR>
+	autocmd BufWritePre	*	call s:customheader ()
