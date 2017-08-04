@@ -1,31 +1,54 @@
-" **************************************************************************** "
-"                                                                              "
-"                                                         :::      ::::::::    "
-"    42header.vim                                       :+:      :+:    :+:    "
-"                                                     +:+ +:+         +:+      "
-"    By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+         "
-"                                                 +#+#+#+#+#+   +#+            "
-"    Created: 2015/12/06 19:39:01 by pbondoer          #+#    #+#              "
-"    Updated: 2017/06/01 11:13:28 by pbondoer         ###   ########.fr        "
-"                                                                              "
-" **************************************************************************** "
-
-" ty zaz <3
 let s:asciiart = [
-			\"        :::      ::::::::",
-			\"      :+:      :+:    :+:",
-			\"    +:+ +:+         +:+  ",
-			\"  +#+  +:+       +#+     ",
-			\"+#+#+#+#+#+   +#+        ",
-			\"     #+#    #+#          ",
-			\"    ###   ########.fr    "
-			\]
+\"                        __ __                                               ",
+\"                       (,-^\-\_                                             ",
+\"                      ,'    \ \`-.                                          ",
+\"                     '            \                                         ",
+\"                    |              :                                        ",
+\"                    |        _     |                                        ",
+\"                   ,|___   ,' `.   |                                        ",
+\"                   ,'   ` |     | /\/\                                      ",
+\"                   |     )\   o // ;-.`                 __                  ",
+\"                   `._o,'  ;---:_  __/ ____          ,-'  `--.              ",
+\"                    ,(,`--'      `. \,'_ __`.     ,-'         `.            ",
+\"                 ,-' (        _,'|---`(  \ \-\   /              `.          ",
+\"             _,-|  |  \    ,-',-'      \_/_/_/--'._               \         ",
+\"            ( \  \-'   `--^--'    '!..             `.              `        ",
+\"          ,' `-^-'  ..    .         '`!.             \           _,-\       ",
+\"        ,'          `!,   !.          `'    ,.....    \      _,-'_,-`-,---. ",
+\"       '|            `'   !.     ...           '``!,   \   ,'   ,'   ,'    \",
+\"      / :     .           !.   .,'''   ,.!'''           \ /   ,'   ,'      /",
+\"     '   :  ,!'     ....  `'  `'     `''        .  ,.... \   /    /       / ",
+\"    '    ; ,!'   ,!'''''      ,-----.           `!  ''''  \ '   ,'.     ,'  ",
+\"   /   ,'  `!              .-'       `--.       ,!         /  ,'   `. ,'    ",
+\"  :   ;         ..         |             `.___  `!     .,..\ /       ;      ",
+\"  :   ;     ..!'''       ,'                   ``-.     `''  \     _,'       ",
+\" :   ;     ,''           |     _______            `.         `---'  |       ",
+\" :   :         ...       |  ,-'    ,' `-._         |        ,.    | |       ",
+\" :    \    ..!''''       |,'     ,'       :-.      |        `!..  | :       ",
+\" :     \   `'             \   ,-'         |  \    ,'    ..    `!. | :       ",
+\" :      :      ,......     `.'            |   \   |      ``.   `' ; ;       ",
+\"  :     | ,.       ''''      ._           |    \ /        ;!;    / :        ",
+\"  :     :  !.                  `-._       | _.--'          ''   /  ;        ",
+\"   \     \ `!.    ,.!'    ,.....   `------^'        .,..       /  :         ",
+\"    \     \ `'   ,''       ''''``.                ,!''''      ;   ;         ",
+\"     \     \    `'                       .!'''                ; ,'          ",
+\"      \     \          ,.,'            ,!'                   / /            ",
+\"       `.    \       ,!''    `''`...    '     '!...        ,' /             ",
+\"         \    \      '            ''     ....   `''   ,---' ,'              ",
+\"          `.   `.        ,...          .!''''      ,-'    ,'                ",
+\"   -hrr-    `-.  `--.    `''`'''     __;---.    ,-'    _,'                  ",
+\"               `-.   `-._____,------'       `--'    _,'                     ",
+\"                  `-._                         __,-'                        ",
+\"                      `---.__            __,--'                             ",
+\"                             `----------'                                   "
+\]
+
 
 let s:start		= '/*'
 let s:end		= '*/'
 let s:fill		= '*'
 let s:length	= 80
-let s:margin	= 5
+let s:margin	= 2
 
 let s:types		= {
 			\'\.c$\|\.h$\|\.cc$\|\.hh$\|\.cpp$\|\.hpp$\|\.php':
@@ -83,18 +106,18 @@ function! s:line(n)
 	elseif a:n == 4 " filename
 		return s:textline(s:filename(), s:ascii(a:n))
 	elseif a:n == 6 " author
-		return s:textline("By: " . s:user() . " <" . s:mail() . ">", s:ascii(a:n))
+		return s:textline("By: " . s:name() . " <" . s:mail() . ">", s:ascii(a:n))
 	elseif a:n == 8 " created
-		return s:textline("Created: " . s:date() . " by " . s:user(), s:ascii(a:n))
+		return s:textline("Created: " . s:date() . " by " . s:name(), s:ascii(a:n))
 	elseif a:n == 9 " updated
-		return s:textline("Updated: " . s:date() . " by " . s:user(), s:ascii(a:n))
+		return s:textline("Updated: " . s:date() . " by " . s:name(), s:ascii(a:n))
 	endif
 endfunction
 
-function! s:user()
-	let l:user = $USER
-	if strlen(l:user) == 0
-		let l:user = "marvin"
+function! s:name()
+	let l:name = $FULLNAME
+	if strlen(l:name) == 0
+		let l:user = "Nobody"
 	endif
 	return l:user
 endfunction
@@ -102,7 +125,7 @@ endfunction
 function! s:mail()
 	let l:mail = $MAIL
 	if strlen(l:mail) == 0
-		let l:mail = "marvin@42.fr"
+		let l:mail = "no@add.ress"
 	endif
 	return l:mail
 endfunction
