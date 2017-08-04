@@ -19,12 +19,11 @@
 "                                                /    `--.._  `',.   _\  `     "
 "                                                `-.       /\  | `. ( ,\  \    "
 "  C: 2017/08/04 23:05 by Nobody                _/  `-._  /  \ |--'  (     \   "
-"  M: 2017/08/04 23:12 by 0                    '  `-.   `'    \/\`.   `.    )  "
+"  M: 2017/08/04 23:22 by Thomas POTIER        '  `-.   `'    \/\`.   `.    )  "
 "                                                    \  -hrr-    \ `.  |    |  "
 " **************************************************************************** "
 
-
-let s:asciiart = [
+let s:asciiart	= [
 			\"     ,---.                    ",
 			\"   ,.'-.   \\                  ",
 			\"  ( ( ,'\"\"\"\"\"-.               ",
@@ -48,6 +47,7 @@ let s:asciiart = [
 			\"'  `-.   `'    \\/\\`.   `.    )",
 			\"      \\  -hrr-    \\ `.  |    |"
 			\]
+let s:plugname	= 'CustomHeader ! v1.0'
 
 let s:start		= '/*'
 let s:end		= '*/'
@@ -106,16 +106,18 @@ function! s:textline(left, right)
 endfunction
 
 function! s:line(n)
-	if a:n == 1 || a:n == s:height " top and bottom line
+	if a:n == 1 || a:n == s:height
 		return s:start . ' ' . repeat(s:fill, s:length - strlen(s:start) - strlen(s:end) - 2) . ' ' . s:end
-	elseif a:n == 4 " filename
+	elseif a:n == 3
 		return s:textline(s:filename(), s:ascii(a:n))
-	elseif a:n == 6 " author
+	elseif a:n == 5
 		return s:textline(s:name() . " <" . s:mail() . ">", s:ascii(a:n))
-	elseif a:n == s:height - 3 " created
+	elseif a:n == s:height - 3
 		return s:textline("C: " . s:date() . " by " . s:name(), s:ascii(a:n))
-	elseif a:n == s:height - 2 " updated
+	elseif a:n == s:height - 2
 		return s:textline("M: " . s:date() . " by " . s:name(), s:ascii(a:n))
+	elseif a:n == s:height - 1
+		return s:textline(s:plugname, s:ascii(a:n))
 	else
 		return s:textline('', s:ascii(a:n))
 	endif
