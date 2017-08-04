@@ -17,7 +17,7 @@
 "                                                   __|            ,-'_        "
 "                                                 / `L     `._  _,'  ' `.      "
 "  C: 2017/08/04 23:01 by Nobody                 /    `--.._  `',.   _\  `     "
-"  M: 2017/08/04 23:01 by Nobody                 `-.       /\  | `. ( ,\  \    "
+"  M: 2017/08/04 23:02 by Nobody                 `-.       /\  | `. ( ,\  \    "
 "                                                                              "
 " **************************************************************************** "
 
@@ -51,7 +51,7 @@ let s:end		= '*/'
 let s:fill		= '*'
 let s:length	= 80
 let s:margin	= 3
-let s:height	= len(s:asciiart)
+let s:height	= len(s:asciiart) + 1
 
 let s:types		= {
 			\'\.c$\|\.h$\|\.cc$\|\.hh$\|\.cpp$\|\.hpp$\|\.php':
