@@ -20,9 +20,6 @@ let s:asciiart = [
 			\"     `-.    `-/ \'  |   _,'         `.    ",
 			\"        `-._ /      `--'/             \   ",
 			\"-hrr-      ,'           |              \  ",
-			\"          /             |               \ ",
-			\"       ,-'              |               / ",
-			\"      /                 |             -'  "
 			\]
 
 let s:start		= '/*'
@@ -78,7 +75,7 @@ function! s:textline(left, right)
 endfunction
 
 function! s:line(n)
-	if a:n == 1 || a:n == 25 " top and bottom line
+	if a:n == 1 || a:n == 24 " top and bottom line
 		return s:start . ' ' . repeat(s:fill, s:length - strlen(s:start) - strlen(s:end) - 2) . ' ' . s:end
 	elseif a:n == 2 || a:n == 10 " blank line
 		return s:textline('', '')
@@ -124,7 +121,7 @@ function! s:date()
 endfunction
 
 function! s:insert()
-	let l:line = 25
+	let l:line = 24
 
 	" empty line after header
 	call append(0, "")
