@@ -17,10 +17,12 @@
 "                                                   __|            ,-'_        "
 "                                                 / `L     `._  _,'  ' `.      "
 "                                                /    `--.._  `',.   _\  `     "
-"  C: 2017/08/04 23:04 by Nobody                 `-.       /\  | `. ( ,\  \    "
-"  M: 2017/08/04 23:04 by Nobody                _/  `-._  /  \ |--'  (     \   "
-"                                              '  `-.   `'    \/\`.   `.    )  "
+"                                                `-.       /\  | `. ( ,\  \    "
+"  C: 2017/08/04 23:05 by Nobody                _/  `-._  /  \ |--'  (     \   "
+"  M: 2017/08/04 23:12 by 0                    '  `-.   `'    \/\`.   `.    )  "
+"                                                    \  -hrr-    \ `.  |    |  "
 " **************************************************************************** "
+
 
 let s:asciiart = [
 			\"     ,---.                    ",
@@ -122,9 +124,9 @@ endfunction
 function! s:name()
 	let l:name = $FULLNAME
 	if strlen(l:name) == 0
-		let l:user = "Nobody"
+		let l:name = "Nobody"
 	endif
-	return l:user
+	return l:name
 endfunction
 
 function! s:mail()
@@ -167,15 +169,16 @@ function! s:update()
 	endif
 	if s:checkfiletype()
 		return 1
-		return 0
-	endfunction
+	endif
+	return 0
+endfunction
 
-	function! s:customheader()
-		if s:update()
-			call s:insert()
-		endif
-	endfunction
+function! s:customheader()
+	if s:update()
+		call s:insert()
+	endif
+endfunction
 
-	command! CustomHeader call s:customheader ()
-	nmap <f1> <esc>:CustomHeader<CR>
-	autocmd BufWritePre	*	call s:customheader ()
+command! CustomHeader call s:customheader ()
+nmap <f1> <esc>:CustomHeader<CR>
+autocmd BufWritePre	*	call s:customheader ()
