@@ -1,7 +1,7 @@
 " **************************************************************************** "
 "                                                                              "
 "                                                   ,---.                      "
-"  42header.vim                                   ,.'-.   \                    "
+"  42header.vim                                  ( ( ,'"""""-.                 "
 "                                                ( ( ,'"""""-.                 "
 "  Nobody <no@add.ress>                          `,X          `.               "
 "                                                /` `           `._            "
@@ -17,7 +17,7 @@
 "                                                    |   |         .O |        "
 "                                                   __|            ,-'_        "
 "  C: 2017/08/04 22:13 by Nobody                  / `L     `._  _,'  ' `.      "
-"  M: 2017/08/04 22:13 by Nobody                 /    `--.._  `',.   _\  `     "
+"  M: 2017/08/04 22:45 by Nobody                 `-.       /\  | `. ( ,\  \    "
 "                                                                              "
 " **************************************************************************** "
 
@@ -74,11 +74,6 @@ let s:types		= {
 
 function! s:filetype()
 	let l:f = s:filename()
-
-	let s:start	= '#'
-	let s:end	= '#'
-	let s:fill	= '*'
-
 	for type in keys(s:types)
 		if l:f =~ type
 			let s:start	= s:types[type][0]
@@ -86,7 +81,16 @@ function! s:filetype()
 			let s:fill	= s:types[type][2]
 		endif
 	endfor
+endfunction
 
+function! s:filetype()
+	let l:f = s:filename()
+	for type in keys(s:types)
+		if l:f =~ type
+			return 1
+		endif
+	endfor
+	return 0
 endfunction
 
 function! s:ascii(n)
@@ -95,7 +99,6 @@ endfunction
 
 function! s:textline(left, right)
 	let l:left = strpart(a:left, 0, s:length - s:margin * 3 - strlen(a:right) + 1)
-
 	return s:start . repeat(' ', s:margin - strlen(s:start)) . l:left . repeat(' ', s:length - s:margin * 2 - strlen(l:left) - strlen(a:right)) . a:right . repeat(' ', s:margin - strlen(s:end)) . s:end
 endfunction
 
@@ -165,7 +168,9 @@ function! s:update()
 		call setline(4, s:line(4))
 		return 0
 	endif
-	return 1
+	if s:checkfiletype()
+		return 1
+	return 0
 endfunction
 
 function! s:customheader()
@@ -174,7 +179,6 @@ function! s:customheader()
 	endif
 endfunction
 
-" Bind command and shortcut
 command! CustomHeader call s:customheader ()
 nmap <f1> <esc>:CustomHeader<CR>
 autocmd BufWritePre	*	call s:customheader ()
