@@ -124,7 +124,7 @@ function! s:date()
 endfunction
 
 function! s:insert()
-	let l:line = 11
+	let l:line = 25
 
 	" empty line after header
 	call append(0, "")
