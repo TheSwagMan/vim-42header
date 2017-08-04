@@ -17,7 +17,7 @@
 "                                                   __|            ,-'_        "
 "                                                 / `L     `._  _,'  ' `.      "
 "  C: 2017/08/04 22:51 by Nobody                 /    `--.._  `',.   _\  `     "
-"  M: 2017/08/04 22:51 by Nobody                 `-.       /\  | `. ( ,\  \    "
+"  M: 2017/08/04 22:53 by Nobody                 `-.       /\  | `. ( ,\  \    "
 "                                                                              "
 " **************************************************************************** "
 
@@ -150,9 +150,7 @@ endfunction
 
 function! s:insert()
 	let l:line = s:height
-	" empty line after header
 	call append(0, "")
-	" loop over lines
 	while l:line > 0
 		call append(0, s:line(l:line))
 		let l:line = l:line - 1
