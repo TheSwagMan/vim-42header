@@ -1,7 +1,7 @@
 " **************************************************************************** "
 "                                                                              "
 "                                                   ,---.                      "
-"  42header.vim                                  ( ( ,'"""""-.                 "
+/* 42header.vim                                  ( ( ,'"""""-.                */
 "                                                ( ( ,'"""""-.                 "
 "  Nobody <no@add.ress>                          `,X          `.               "
 "                                                /` `           `._            "
@@ -17,7 +17,7 @@
 "                                                    |   |         .O |        "
 "                                                   __|            ,-'_        "
 "  C: 2017/08/04 22:13 by Nobody                  / `L     `._  _,'  ' `.      "
-"  M: 2017/08/04 22:45 by Nobody                 `-.       /\  | `. ( ,\  \    "
+/* M: 2017/08/04 22:48 by Nobody                 `-.       /\  | `. ( ,\  \   */
 "                                                                              "
 " **************************************************************************** "
 
@@ -83,7 +83,7 @@ function! s:filetype()
 	endfor
 endfunction
 
-function! s:filetype()
+function! s:checkfiletype()
 	let l:f = s:filename()
 	for type in keys(s:types)
 		if l:f =~ type
