@@ -78,12 +78,10 @@ function! s:textline(left, right)
 endfunction
 
 function! s:line(n)
-	if a:n == 1 || a:n == 11 " top and bottom line
+	if a:n == 1 || a:n == 25 " top and bottom line
 		return s:start . ' ' . repeat(s:fill, s:length - strlen(s:start) - strlen(s:end) - 2) . ' ' . s:end
 	elseif a:n == 2 || a:n == 10 " blank line
 		return s:textline('', '')
-	elseif a:n == 3 || a:n == 5 || a:n == 7 " empty with ascii
-		return s:textline('', s:ascii(a:n))
 	elseif a:n == 4 " filename
 		return s:textline(s:filename(), s:ascii(a:n))
 	elseif a:n == 6 " author
@@ -92,6 +90,8 @@ function! s:line(n)
 		return s:textline("Created: " . s:date() . " by " . s:name(), s:ascii(a:n))
 	elseif a:n == 9 " updated
 		return s:textline("Updated: " . s:date() . " by " . s:name(), s:ascii(a:n))
+	else
+		return s:textline('', s:ascii(a:n))
 	endif
 endfunction
 
