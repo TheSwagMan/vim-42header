@@ -5,9 +5,9 @@
 "                                                ( ( ,'"""""-.                 "
 "  Nobody <no@add.ress>                          `,X          `.               "
 "                                                /` `           `._            "
-"  C: 2017/08/04 by Nobody                      (            ,   ,_\           "
+"                                               (            ,   ,_\           "
 "                                               |          ,---.,'o `.         "
-"                                                                              "
+"                                               |         / o   \     )        "
 "                                                \ ,.    (      .____,         "
 "                                                   \|     ____,'     \        "
 "                                               '`'\  \        _,____,'        "
@@ -16,9 +16,9 @@
 "                                                  `--'  .'           |        "
 "                                                    |   |         .O |        "
 "                                                   __|            ,-'_        "
-"                                                 / `L     `._  _,'  ' `.      "
-"                                                /    `--.._  `',.   _\  `     "
-"                                                `-.       /\  | `. ( ,\  \    "
+"  C: 2017/08/04 22:09 by Nobody                  / `L     `._  _,'  ' `.      "
+"  M: 2017/08/04 22:09 by Nobody                 /    `--.._  `',.   _\  `     "
+"                                                                              "
 " **************************************************************************** "
 
 let s:asciiart = [
@@ -147,10 +147,8 @@ endfunction
 
 function! s:insert()
 	let l:line = s:height
-
 	" empty line after header
 	call append(0, "")
-
 	" loop over lines
 	while l:line > 0
 		call append(0, s:line(l:line))
@@ -162,7 +160,7 @@ function! s:update()
 	call s:filetype()
 	if getline(s:height - 2) =~ s:start . repeat(' ', s:margin - strlen(s:start)) . "M: "
 		if &mod
-			call setline(9, s:line(9))
+			call setline(s:height - 2, s:line(s:height - 2))
 		endif
 		call setline(4, s:line(4))
 		return 0
