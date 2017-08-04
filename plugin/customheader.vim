@@ -1,7 +1,7 @@
 " **************************************************************************** "
 "                                                   ,---.                      "
 "                                                 ,.'-.   \                    "
-"  customheader.vim                              ( ( ,'"""""-.                 "
+"                                                ( ( ,'"""""-.                 "
 "                                                `,X          `.               "
 "  Nobody <no@add.ress>                          /` `           `._            "
 "                                               (            ,   ,_\           "
@@ -19,7 +19,7 @@
 "                                                /    `--.._  `',.   _\  `     "
 "                                                `-.       /\  | `. ( ,\  \    "
 "  C: 2017/08/04 23:05 by Nobody                _/  `-._  /  \ |--'  (     \   "
-"  M: 2017/08/04 23:22 by Thomas POTIER        '  `-.   `'    \/\`.   `.    )  "
+"  M: 2017/08/04 23:26 by Thomas POTIER        '  `-.   `'    \/\`.   `.    )  "
 "                                                    \  -hrr-    \ `.  |    |  "
 " **************************************************************************** "
 
@@ -112,9 +112,9 @@ function! s:line(n)
 		return s:textline(s:filename(), s:ascii(a:n))
 	elseif a:n == 5
 		return s:textline(s:name() . " <" . s:mail() . ">", s:ascii(a:n))
-	elseif a:n == s:height - 3
+	elseif a:n == s:height - 4
 		return s:textline("C: " . s:date() . " by " . s:name(), s:ascii(a:n))
-	elseif a:n == s:height - 2
+	elseif a:n == s:height - 3
 		return s:textline("M: " . s:date() . " by " . s:name(), s:ascii(a:n))
 	elseif a:n == s:height - 1
 		return s:textline(s:plugname, s:ascii(a:n))
